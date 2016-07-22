@@ -41,7 +41,21 @@ class AnimalHipster
 {
 	public ArrayList<String> findAnimalHipsters (HashMap<String, ArrayList<String>> network, HashMap<String, String> favoriteAnimals)
 	{
+		ArrayList<String> hipsters = new ArrayList<String>();
+		ArrayList<String> friends = new ArrayList<String>();
 		
-		return null;
+		for(String people : favoriteAnimals.keySet()) {
+			String fav = favoriteAnimals.get(people);
+			friends.addAll(network.get(people));
+			for(String f : friends) {
+				for(String animal : favoriteAnimals.keySet()) {
+					if(!(favoriteAnimals.get(animal).equals(fav))) {
+						hipsters.add(f);
+					}
+				}
+			}	
+		}
+		
+		return hipsters;
 	}
 }
